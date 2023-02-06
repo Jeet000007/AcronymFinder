@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="x1a-05-87N">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Acronym Finder View Controller-->
+        <scene sceneID="xrk-em-XH0">
+            <objects>
+                <viewController storyboardIdentifier="AcronymFinderViewController" id="x1a-05-87N" customClass="AcronymFinderViewController" customModule="AcronymFinder" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="phX-6O-hIG">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acronym Finder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZpU-C5-Zhq">
+                                <rect key="frame" x="16" y="75" width="361" height="27.666666666666671"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                <color key="textColor" systemColor="systemGray3Color"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="KNq-Uv-sW4">
+                                <rect key="frame" x="0.0" y="190.66666666666669" width="393" height="627.33333333333326"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="x1a-05-87N" id="gYV-gw-f9z"/>
+                                    <outlet property="delegate" destination="x1a-05-87N" id="qzu-Cb-zl6"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" placeholder="Search Acronym" translatesAutoresizingMaskIntoConstraints="NO" id="u65-nb-PbM">
+                                <rect key="frame" x="0.0" y="118.66666666666669" width="393" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="x1a-05-87N" id="zqF-KW-heR"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="LZb-x6-VvF"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ZpU-C5-Zhq" firstAttribute="top" secondItem="LZb-x6-VvF" secondAttribute="top" constant="16" id="4iT-rX-YeX"/>
+                            <constraint firstItem="u65-nb-PbM" firstAttribute="leading" secondItem="LZb-x6-VvF" secondAttribute="leading" id="7fY-9M-cCc"/>
+                            <constraint firstItem="KNq-Uv-sW4" firstAttribute="leading" secondItem="LZb-x6-VvF" secondAttribute="leading" id="PXX-Ge-Rrw"/>
+                            <constraint firstItem="u65-nb-PbM" firstAttribute="top" secondItem="ZpU-C5-Zhq" secondAttribute="bottom" constant="16" id="Rf7-Ee-X0V"/>
+                            <constraint firstItem="LZb-x6-VvF" firstAttribute="bottom" secondItem="KNq-Uv-sW4" secondAttribute="bottom" id="ZrF-ps-1xW"/>
+                            <constraint firstItem="LZb-x6-VvF" firstAttribute="trailing" secondItem="ZpU-C5-Zhq" secondAttribute="trailing" constant="16" id="ZyZ-SN-ayk"/>
+                            <constraint firstItem="ZpU-C5-Zhq" firstAttribute="leading" secondItem="LZb-x6-VvF" secondAttribute="leading" constant="16" id="c9Y-9g-EUO"/>
+                            <constraint firstItem="KNq-Uv-sW4" firstAttribute="top" secondItem="u65-nb-PbM" secondAttribute="bottom" constant="16" id="cWt-Sl-LDh"/>
+                            <constraint firstItem="u65-nb-PbM" firstAttribute="trailing" secondItem="LZb-x6-VvF" secondAttribute="trailing" id="o59-iX-1j2"/>
+                            <constraint firstItem="LZb-x6-VvF" firstAttribute="trailing" secondItem="KNq-Uv-sW4" secondAttribute="trailing" id="y69-AL-W4P"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="acronymSearchBar" destination="u65-nb-PbM" id="pgN-bW-xyJ"/>
+                        <outlet property="acronymTableView" destination="KNq-Uv-sW4" id="JXa-05-FhL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sKY-0e-VTq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="717" y="-35"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
