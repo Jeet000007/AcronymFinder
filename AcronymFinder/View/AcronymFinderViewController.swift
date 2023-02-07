@@ -20,8 +20,6 @@ class AcronymFinderViewController: UIViewController {
         viewModel.delegate = self
        
     }
-    
-
 }
 
 extension AcronymFinderViewController : AcronymFinderDelegate{
@@ -35,14 +33,17 @@ extension AcronymFinderViewController : AcronymFinderDelegate{
 extension AcronymFinderViewController : UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
-        if !(searchBar.text?.isEmpty ?? false){
-            viewModel.performAcronymSearch(searchText: searchBar.text!)
-        }
+//        if !(searchBar.text?.isEmpty ?? false){
+//            viewModel.performAcronymSearch(searchText: searchBar.text!)
+//        }
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             viewModel.clearData()
+        }else{
+            viewModel.performAcronymSearch(searchText: searchText)
+            
         }
     }
 }

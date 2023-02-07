@@ -35,7 +35,7 @@
                             </tableView>
                             <searchBar contentMode="redraw" placeholder="Search Acronym" translatesAutoresizingMaskIntoConstraints="NO" id="u65-nb-PbM">
                                 <rect key="frame" x="0.0" y="118.66666666666669" width="393" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                 <connections>
                                     <outlet property="delegate" destination="x1a-05-87N" id="zqF-KW-heR"/>
                                 </connections>
