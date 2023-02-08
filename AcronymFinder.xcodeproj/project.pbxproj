@@ -21,6 +21,7 @@
 		C827E39B2990D17C0039ED5E /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827E39A2990D17C0039ED5E /* AppConstants.swift */; };
 		C827E39E2990D32D0039ED5E /* AcronymFinderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827E39D2990D32D0039ED5E /* AcronymFinderViewModel.swift */; };
 		C827E3A12990DF1C0039ED5E /* RequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827E3A02990DF1C0039ED5E /* RequestHelper.swift */; };
+		C894BAC329939F1F00AEDAF1 /* CommonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C894BAC229939F1F00AEDAF1 /* CommonHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		C827E39A2990D17C0039ED5E /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		C827E39D2990D32D0039ED5E /* AcronymFinderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcronymFinderViewModel.swift; sourceTree = "<group>"; };
 		C827E3A02990DF1C0039ED5E /* RequestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHelper.swift; sourceTree = "<group>"; };
+		C894BAC229939F1F00AEDAF1 /* CommonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 		C827E35F2990CB5C0039ED5E /* AcronymFinder */ = {
 			isa = PBXGroup;
 			children = (
+				C894BAC129939EF500AEDAF1 /* CommonHelper */,
 				C827E3962990CF3A0039ED5E /* Model */,
 				C827E3932990CB870039ED5E /* View */,
 				C827E39C2990D29B0039ED5E /* ViewModel */,
@@ -180,6 +183,14 @@
 				C827E3A02990DF1C0039ED5E /* RequestHelper.swift */,
 			);
 			path = RequestHelper;
+			sourceTree = "<group>";
+		};
+		C894BAC129939EF500AEDAF1 /* CommonHelper */ = {
+			isa = PBXGroup;
+			children = (
+				C894BAC229939F1F00AEDAF1 /* CommonHelper.swift */,
+			);
+			path = CommonHelper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,6 +326,7 @@
 			files = (
 				C827E3612990CB5C0039ED5E /* AppDelegate.swift in Sources */,
 				C827E39B2990D17C0039ED5E /* AppConstants.swift in Sources */,
+				C894BAC329939F1F00AEDAF1 /* CommonHelper.swift in Sources */,
 				C827E3952990CBA80039ED5E /* AcronymFinderViewController.swift in Sources */,
 				C827E3632990CB5C0039ED5E /* SceneDelegate.swift in Sources */,
 				C827E39E2990D32D0039ED5E /* AcronymFinderViewModel.swift in Sources */,

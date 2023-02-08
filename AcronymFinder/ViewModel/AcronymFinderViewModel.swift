@@ -8,8 +8,8 @@
 import UIKit
 
 protocol AcronymFinderDelegate : AnyObject {
-    func reloadView()
-    func errorAlert(message : String)
+    func reloadTableView()
+    func showErrorAlert(message : String)
 }
 
 class AcronymFinderViewModel: NSObject {
@@ -21,44 +21,44 @@ class AcronymFinderViewModel: NSObject {
     ///  Method to make request to search the given acronym
     /// - Parameter searchText: text string from viewcontroller
     func performAcronymSearch(searchText : String)  {
-        CancelPreviousRequest()
+        cancelPreviousRequest()
         RequestHelper.shared.performGetRequest(url: Constants.acronymURL, paramters: [Parameters(key: Constants.sf, value: searchText)]) { [unowned self] data, success, errorMessage  in
             if success{
-                self.ParseAcronymData(data: data!)
+                self.parseAcronymData(data: data!)
             }else{
                 if !(errorMessage == ErrorMessage.errorCancelled.rawValue){
-                    delegate?.errorAlert(message: errorMessage)
+                    delegate?.showErrorAlert(message: errorMessage)
                 }
                 
             }
         }
     }
     
-    /// Parse server data to model structure
-    /// - Parameter data: server response
-    func ParseAcronymData(data : Data){
+    /// Method to parse server data to model structure
+    /// - Parameter data: server response data
+    func parseAcronymData(data : Data){
         do{
             acronymData = try JSONDecoder().decode([AcronymModelElement].self, from: data)
         }catch{
-            delegate?.errorAlert(message: ErrorMessage.invalidResponse.rawValue)
+            delegate?.showErrorAlert(message: ErrorMessage.invalidResponse.rawValue)
         }
-        delegate?.reloadView()
+        delegate?.reloadTableView()
     }
     
-    /// Methid to clear data for no search string
+    /// Method to clear data for no search string
     func clearData(){
-        CancelPreviousRequest()
+        cancelPreviousRequest()
         acronymData?.removeAll()
-        delegate?.reloadView()
+        delegate?.reloadTableView()
     }
     
     /// Cancel all previous server request
-    private func CancelPreviousRequest(){
+    private func cancelPreviousRequest(){
         RequestHelper.shared.cancelDataTask()
     }
     
     /// Returns acronym array data count
-    /// - Returns: data count
+    /// - Returns: acronym data count
     func getDataCount() -> Int {
         return acronymData?.first?.lfs.count ?? 0
     }

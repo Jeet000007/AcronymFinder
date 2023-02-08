@@ -37,7 +37,7 @@ final class AcronymFinderTests: XCTestCase {
     }
     
     func testAcronymFinderServiceForValidData() throws {
-        let expectation = expectation(description: "RequestSuccess")
+        let expectation = expectation(description: Constants.requestSuccess)
         RequestHelper.shared.performGetRequest(url: Constants.acronymURL, paramters: [Parameters(key: Constants.sf, value: "NASA")]) { data, success, message  in
             XCTAssertTrue(success)
             if success{
@@ -45,10 +45,10 @@ final class AcronymFinderTests: XCTestCase {
                     
                     guard let data = data else { return }
                     let acronymData = try JSONDecoder().decode([AcronymModelElement].self, from: data)
-                    //print("acronymData\(acronymData)")
+                    
                     XCTAssertNotNil(acronymData)
                 }catch{
-                    XCTFail("invalid response")
+                    XCTFail(Constants.invalidResponse)
                 }
             }
             expectation.fulfill()
@@ -57,18 +57,18 @@ final class AcronymFinderTests: XCTestCase {
     }
     
     func testAcronymFinderServiceForInValidData() throws {
-        let expectation = expectation(description: "RequestSuccess")
+        let expectation = expectation(description: Constants.requestSuccess)
         RequestHelper.shared.performGetRequest(url: Constants.acronymURL, paramters: [Parameters(key: Constants.sf, value: "")]) { data, success, message  in
             XCTAssertTrue(success)
             if success{
                 do{
                     guard let data = data else { return }
                     let acronymData = try JSONDecoder().decode([AcronymModelElement].self, from: data)
-                    //print("acronymData\(acronymData)")
+                    
                     XCTAssertNil(acronymData)
                     XCTAssertEqual(acronymData.isEmpty, true)
                 }catch{
-                    XCTFail("invalid response")
+                    XCTFail(Constants.invalidResponse)
                 }
             }
             expectation.fulfill()

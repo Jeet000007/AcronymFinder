@@ -7,16 +7,19 @@
 
 import UIKit
 
+/// Query Paramter Model
 struct Parameters{
     let key : String
     let value : String
 }
 
+/// Error Codes
 enum ErrorType : Int {
     case errorCancelled = -999
     case internetError = -1009
 }
 
+/// Error Message
 enum ErrorMessage : String{
     case errorCancelled = "Cancelled"
     case internetError = "Internet offline"
@@ -27,7 +30,7 @@ enum ErrorMessage : String{
 class RequestHelper: NSObject {
     
     static let shared = RequestHelper()
-    typealias CompletionHandler = (_ data : Data?, _ success : Bool, _ message : String) -> Void
+    typealias completionHandler = (_ data : Data?, _ success : Bool, _ message : String) -> Void
     var dataTask : URLSessionDataTask?
     
     private override init() {
@@ -39,12 +42,11 @@ class RequestHelper: NSObject {
     ///   - url: Url String
     ///   - paramters: Query parameters
     ///   - completionHandler: response handler
-    func performGetRequest(url : String , paramters : [Parameters] , completionHandler: @escaping CompletionHandler)  {
+    func performGetRequest(url : String , paramters : [Parameters] , completionHandler: @escaping completionHandler)  {
         dataTask = URLSession.shared.dataTask(with: createUrlRequest(url: url, paramters: paramters)) { [weak self] data, response, error in
             
             if error != nil{
                 let error = error as? NSError
-                //print("error\(error?.localizedDescription ?? "") - \(error?.code ?? 0)")
                 completionHandler(nil,false,self?.getErrorMessage(error: error!) ?? "")
             }else if let requestResponse = response as? HTTPURLResponse ,
                      requestResponse.statusCode == 200,
@@ -78,6 +80,9 @@ class RequestHelper: NSObject {
         return request
     }
     
+    /// Method to get Error String from Error object
+    /// - Parameter error: NSError object
+    /// - Returns: Corresponding Error String
     func getErrorMessage(error : NSError) -> String {
         var messageString = ""
         switch error.code {

@@ -21,24 +21,13 @@ class AcronymFinderViewController: UIViewController {
         viewModel.delegate = self
        
     }
-    
-    func noDataView(tableView : UITableView) -> UILabel {
-        let rect = CGRect(x: 0,
-                          y: 0,
-                          width: tableView.bounds.size.width,
-                          height: tableView.bounds.size.height)
-        let noDataLabel: UILabel = UILabel(frame: rect)
-        
-        noDataLabel.text = "No Records Found"
-        noDataLabel.textColor = UIColor.black
-        noDataLabel.textAlignment = NSTextAlignment.center
-        return noDataLabel
-    }
 }
 
 // MARK: ViewModelDelegate
 extension AcronymFinderViewController : AcronymFinderDelegate{
-    func reloadView() {
+    
+    /// realod table View for new data
+    func reloadTableView() {
         DispatchQueue.main.async {
             self.acronymTableView.reloadData()
         }
@@ -46,23 +35,16 @@ extension AcronymFinderViewController : AcronymFinderDelegate{
     
     /// Method to display alert prompt
     /// - Parameter message: message to be shown
-    func errorAlert(message : String)  {
-        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
-        DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
-        }
-        let when = DispatchTime.now() + 0.8
-        DispatchQueue.main.asyncAfter(deadline: when){
-            alert.dismiss(animated: true, completion: nil)
-        }
+    func showErrorAlert(message : String)  {
+        CommonHelper.shared.commonDismissableAlert(message: message, viewController: self)
     }
 }
 
 // MARK: SearchBarDelegate
 extension AcronymFinderViewController : UISearchBarDelegate{
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
-
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -98,7 +80,7 @@ extension AcronymFinderViewController :UITableViewDataSource{
         }else{
             
             if !(acronymSearchBar.text?.isEmpty ?? false){
-                tableView.backgroundView = noDataView(tableView: tableView)
+                tableView.backgroundView = CommonHelper.shared.noTableRecordsLabel(tableView: tableView)
                 tableView.separatorStyle = .none
             }else{
                 tableView.backgroundView = nil
