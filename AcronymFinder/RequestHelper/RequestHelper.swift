@@ -46,7 +46,7 @@ class RequestHelper: NSObject {
         dataTask = URLSession.shared.dataTask(with: createUrlRequest(url: url, paramters: paramters)) { [weak self] data, response, error in
             
             if error != nil{
-                let error = error as? NSError
+                let error = error as NSError?
                 completionHandler(nil,false,self?.getErrorMessage(error: error!) ?? "")
             }else if let requestResponse = response as? HTTPURLResponse ,
                      requestResponse.statusCode == 200,

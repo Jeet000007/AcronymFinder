@@ -26,7 +26,7 @@ class AcronymFinderViewController: UIViewController {
 // MARK: ViewModelDelegate
 extension AcronymFinderViewController : AcronymFinderDelegate{
     
-    /// realod table View for new data
+    /// Reload table View for new data
     func reloadTableView() {
         DispatchQueue.main.async {
             self.acronymTableView.reloadData()
