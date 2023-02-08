@@ -20,7 +20,7 @@ enum ErrorType : Int {
 enum ErrorMessage : String{
     case errorCancelled = "Cancelled"
     case internetError = "Internet offline"
-    case serverError  = "Somthing went wrong"
+    case serverError  = "Something went wrong"
     case invalidResponse = "Invalid Response"
 }
 

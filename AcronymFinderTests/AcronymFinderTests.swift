@@ -37,35 +37,43 @@ final class AcronymFinderTests: XCTestCase {
     }
     
     func testAcronymFinderServiceForValidData() throws {
-        RequestHelper.shared.performGetRequest(url: Constants.acronymURL, paramters: [Parameters(key: Constants.sf, value: "NASA")]) { data, success in
+        let expectation = expectation(description: "RequestSuccess")
+        RequestHelper.shared.performGetRequest(url: Constants.acronymURL, paramters: [Parameters(key: Constants.sf, value: "NASA")]) { data, success, message  in
+            XCTAssertTrue(success)
             if success{
                 do{
+                    
                     guard let data = data else { return }
                     let acronymData = try JSONDecoder().decode([AcronymModelElement].self, from: data)
-                    print("acronymData\(acronymData)")
-                    XCTAssertNil(acronymData)
+                    //print("acronymData\(acronymData)")
+                    XCTAssertNotNil(acronymData)
                 }catch{
-                   
+                    XCTFail("invalid response")
                 }
             }
+            expectation.fulfill()
         }
-        
+        waitForExpectations(timeout: 2, handler: nil)
     }
     
     func testAcronymFinderServiceForInValidData() throws {
-        RequestHelper.shared.performGetRequest(url: Constants.acronymURL, paramters: [Parameters(key: Constants.sf, value: "")]) { data, success in
+        let expectation = expectation(description: "RequestSuccess")
+        RequestHelper.shared.performGetRequest(url: Constants.acronymURL, paramters: [Parameters(key: Constants.sf, value: "")]) { data, success, message  in
+            XCTAssertTrue(success)
             if success{
                 do{
                     guard let data = data else { return }
                     let acronymData = try JSONDecoder().decode([AcronymModelElement].self, from: data)
-                    print("acronymData\(acronymData)")
+                    //print("acronymData\(acronymData)")
                     XCTAssertNil(acronymData)
+                    XCTAssertEqual(acronymData.isEmpty, true)
                 }catch{
-                    
+                    XCTFail("invalid response")
                 }
             }
+            expectation.fulfill()
         }
-        
+        waitForExpectations(timeout: 2, handler: nil)
     }
     
 }

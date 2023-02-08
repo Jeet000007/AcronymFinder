@@ -40,7 +40,6 @@ class AcronymFinderViewModel: NSObject {
         do{
             acronymData = try JSONDecoder().decode([AcronymModelElement].self, from: data)
         }catch{
-            print("\(#function) - \(error)")
             delegate?.errorAlert(message: ErrorMessage.invalidResponse.rawValue)
         }
         delegate?.reloadView()
